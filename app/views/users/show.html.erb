@@ -1,0 +1,46 @@
+<div class="container"> <!--ユーザー詳細ページ-->
+  <div class="row">
+
+    <div class="col-md-3"> <!--ユーザーインフォと新規投稿フォーム-->
+      <div> <!--ユーザーインフォ-->
+        <h2>User info</h2>
+        <%= image_tag '/assets/images/no_image.jpg' %>
+        <table>
+          <tr>
+            <th>name</th>
+            <td><%= @users.name %></td>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <td><%= @users.intro %></td>
+          </tr>
+        </table>
+        <%= link_to edit_user_path, class: 'btn btn-outline-secondary' do %>
+          <i class="fa-solid fa-user-gear"></i>
+        <% end %>
+      </div>
+      <div><!--新規投稿フォーム-->
+        <h2>New Book</h2>
+        <%= form_with %>
+      </div>
+      
+    </div>
+
+    <div class="col-md-8 offset-md-1"> <!--特定ユーザーのBook一覧-->
+      <h2>Books</h2>
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Opinion</th>
+        </tr>
+        <%= @books.each do |book| %>
+          <tr>
+            <td><%= book.title %></td>
+            <td><%= book.body %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+  </div>
+</div>

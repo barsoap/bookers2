@@ -16,3 +16,5 @@ import "../stylesheets/application";
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+require("@fortawesome/fontawesome-free/js/all") //fontawesomeの設定

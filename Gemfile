@@ -58,3 +58,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dotenv-rails' #.env
 
 gem 'devise' #deviseインストール
+
+gem 'font-awesome-sass'
