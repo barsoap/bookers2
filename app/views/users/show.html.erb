@@ -9,7 +9,7 @@
     <div class="col-md-3"> <!--ユーザーインフォと新規投稿フォーム-->
       <div> <!--ユーザー情報-->
         <h2>User info</h2>
-        <%= image_tag '/assets/images/no_image.jpg' %>
+        <%= image_tag @user.get_profile_image(100,100) %>
         <table class="table table-bordered=bottom">
           <tr>
             <th>name</th>
@@ -38,22 +38,23 @@
 
     </div> <!--～ユーザーインフォと新規投稿フォーム-->
 
-    <div class="col-md-8 offset-md-1"> <!--特定ユーザーのBook一覧-->
-      <h2>Books</h2>
-      <table class="table table-bordered=bottom">
+    <div class="col-md-8 offset-md-1">
+    <h2>Books</h2>
+    <table class="table table-bordered-bottom">
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Opinion</th>
+      </tr>
+      <% @books.each do |book| %>
         <tr>
-          <th></th>
-          <th>Title</th>
-          <th>Opinion</th>
+          <td> <% current_user.get_profile_image(100,100) %> </td>
+          <td> <%= book.title %> </td>
+          <td> <%= book.body %> </td>
         </tr>
-        <%= @books.each do |book| %>
-          <tr>
-            <td><%= book.title %></td>
-            <td><%= book.body %></td>
-          </tr>
-        <% end %>
-      </table>
-    </div> <!--～特定ユーザーのBook一覧-->
+      <% end %>
+    </table>
+  </div> <!--～特定ユーザーのBook一覧-->
 
   </div>
 </div>

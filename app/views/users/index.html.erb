@@ -1,1 +1,55 @@
-<h1>ユーザー一覧</h1>
+<div class="container">
+  <div class="row mt-3">
+
+    <div class="col-md-3"> <!--ユーザーインフォと新規投稿フォーム-->
+      <div> <!--ユーザー情報-->
+        <h2>User info</h2>
+        <%= image_tag @user.get_profile_image(100,100) %>
+        <table class="table table-bordered=bottom">
+          <tr>
+            <th>name</th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <td><%= @user.intro %></td>
+          </tr>
+        </table>
+        <%= link_to edit_user_path(current_user.id), class: 'btn btn-outline-secondary mt-5 btn-block' do %> <!--ユーザー編集-->
+          <i class="fa-solid fa-user-gear"></i>
+        <% end %>
+      </div> <!--～ユーザー情報-->
+
+      <div> <!--新規投稿フォーム-->
+        <h2 class="mt-3">New Book</h2>
+        <%= form_with model: @book, url: books_path, method: :post do |f| %>
+          <p>Title</p>
+          <%= f.text_field :title %>
+          <p class="pt-3">Opinion</p>
+          <%= f.text_area :body %>
+          <%= f.submit 'Create Book', class: 'btn btn-success mt-3' %>
+        <% end %> <!--～新規投稿フォーム-->
+      </div>
+
+    </div> <!--～ユーザーインフォと新規投稿フォーム-->
+
+    <div class="col-md-8 offset-md-1">
+    <h2>Users</h2>
+    <table class="table table-bordered-bottom">
+      <tr>
+        <th>image</th>
+        <th>name</th>
+        <th></th>
+      </tr>
+      <% @users.each do |user| %>
+        <tr>
+          <td> <% user.get_profile_image(100,100) %> </td>
+          <td> <%= user.name %> </td>
+          <td> <%= link_to "show", user_path(user.id) %> </td>
+        </tr>
+      <% end %>
+    </table>
+  </div> <!--～特定ユーザーのBook一覧-->
+
+  </div>
+</div>

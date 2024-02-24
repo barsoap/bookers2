@@ -5,7 +5,11 @@
        <h2>User info</h2>
         <%= form_with model: @user, local: true do |f| %>
             <p>Name</p>
-            <%= f.text_field :name, class: "form-control", placeholder: @user.name %>
+            <%= f.text_field :name, class: "form-control mb-3", placeholder: @user.name %>
+
+            <p>Image</p>
+            <%= f.file_field :profile_image, class: "mb-3" %>
+
             <p>Introduction</p>
             <%= f.text_field :intro, class: 'form-control' %>
 

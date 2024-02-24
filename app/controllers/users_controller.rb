@@ -15,19 +15,22 @@ class UsersController < ApplicationController
   end
 
   def index
+    @user = current_user
+    @book = Book.new
+    @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
-    @books = @user.books
     @book = Book.new
+    @books = current_user.books
   end
 
 
   # 投稿データのストロングパラメータ
   private
   def user_params
-    params.require(:user).permit(:name, :intro)
+    params.require(:user).permit(:name, :intro, :profile_image)
   end
 
 end
