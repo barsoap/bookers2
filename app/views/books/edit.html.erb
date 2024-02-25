@@ -5,6 +5,18 @@
 
       <h1 class="pt-3">Editing Book</h1>
 
+      <!--バリデーション(空白が無いかの確認)-->
+      <div class="col-lg-7 pb-3 mx-auto">
+        <% if @book.errors.any?%>
+        <h2><%= @book.errors.count%>error prohibited this obj from being saved: </h2>
+        <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %><br> </li>
+        <% end %>
+        </ul>
+        <% end %>
+      </div>
+
       <%= form_with model: @book, local: true do |f| %>
         <p>Title</p>
         <%= f.text_field :title, autofocus: true, class: "form-control mb-3 input-block-level" %>

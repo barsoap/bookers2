@@ -1,8 +1,18 @@
 <div class="container"> <!--ユーザー詳細ページ-->
+
+  <!--バリデーション(空白が無いかの確認)-->
+  <div class="mb-3">
+    <% if @book.errors.any?%>
+      <h2><%= @book.errors.count%>error prohibited this obj from being saved: </h2>
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %><br></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
   <div class="row mt-3">
-
-
-    <!--バリデーション(空白が無いかの確認)-->
 
 
 
@@ -20,9 +30,11 @@
             <td><%= @user.intro %></td>
           </tr>
         </table>
-        <%= link_to edit_user_path(current_user.id), class: 'btn btn-outline-secondary mt-5 btn-block' do %> <!--ユーザー編集-->
+
+        <%= link_to edit_user_path(current_user.id), class: 'btn btn-outline-secondary mt-5 btn-block' do %> <!--ユーザー編集ボタン-->
           <i class="fa-solid fa-user-gear"></i>
         <% end %>
+
       </div> <!--～ユーザー情報-->
 
       <div> <!--新規投稿フォーム-->

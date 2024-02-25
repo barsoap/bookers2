@@ -27,9 +27,11 @@
             <td><%= @user.intro %></td>
           </tr>
         </table>
+
         <%= link_to edit_user_path(current_user.id), class: 'btn btn-outline-secondary mt-5 btn-block' do %> <!--ユーザー編集-->
           <i class="fa-solid fa-user-gear"></i>
         <% end %>
+
       </div> <!--～ユーザー情報-->
 
       <div> <!--新規投稿フォーム-->

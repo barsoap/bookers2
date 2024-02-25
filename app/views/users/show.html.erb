@@ -2,9 +2,6 @@
   <div class="row mt-3">
 
 
-    <!--バリデーション(空白が無いかの確認)-->
-
-
 
     <div class="col-md-3"> <!--ユーザーインフォと新規投稿フォーム-->
       <div> <!--ユーザー情報-->
@@ -20,11 +17,20 @@
             <td><%= @user.intro %></td>
           </tr>
         </table>
-        <% if @book.user == current_user %> <!-- 投稿者とログイン中のユーザーが一致する場合のみ -->
-          <%= link_to edit_user_path, class: 'btn btn-outline-secondary mt-5 btn-block' do %> <!--ユーザー編集-->
+
+        <%= link_to edit_user_path(current_user.id), class: 'btn btn-outline-secondary mt-5 btn-block' do %> <!--ユーザー編集ボタン-->
           <i class="fa-solid fa-user-gear"></i>
-          <% end %>
         <% end %>
+
+        <!--% if @user == current_user %> <!-- 投稿者とログイン中のユーザーが一致する場合のみ-->
+        <!--  %= link_to edit_user_path(current_user), class: 'btn btn-outline-secondary mt-5 btn-block' do %>
+        <!--    <i class="fa-solid fa-user-gear"></i>-->
+        <!--  % end %>-->
+        <!--% else %> <!--現在のログインユーザーでないとき-->
+        <!--  %= link_to user_path(current_user), class: 'btn btn-outline-secondary mt-5 btn-block' do %>-->
+        <!--    <i class="fa-solid fa-user-gear"></i>-->
+        <!--  % end %>-->
+        <!--% end %>-->
 
       </div> <!--～ユーザー情報-->
 
@@ -57,7 +63,6 @@
                <% end %>
           </td>
           <td> <%= book.body %> </td>
-          <td> <%= book.user_id %> </td>
         </tr>
       <% end %>
     </table>
