@@ -6,7 +6,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save!
-      flash[:notice] = "Book was successfully created."
+      flash[:notice] = "You have created book successfuly."
       redirect_to book_path(@book.id)
     else
       @books = Book.all
@@ -24,10 +24,16 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @book_new = Book.new
-    @user = @book.user
+    @user = current_user
   end
 
   def edit
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path
   end
 
   # 投稿データのストロングパラメータ

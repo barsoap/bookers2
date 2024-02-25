@@ -23,7 +23,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @book = Book.new
-    @books = current_user.books
+    @books = Book.where(user_id: params[:user_id])
+    # Book.where(user_id: params[:user_id])
   end
 
 

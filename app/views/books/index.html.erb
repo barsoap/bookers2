@@ -49,13 +49,17 @@
       <tbody>
       <% @books.each do |book| %>
         <tbody>
-          <td> <%= image_tag @user.get_profile_image(100,100) %> </td>
-          <td> <%= book.title %> </td>
+          <td> <%= image_tag book.user.get_profile_image(100,100) %> </td>
+          <td><%= link_to (book_path(book.id)) do %>
+                <%= book.title %>
+              <% end %>
+          </td>
           <td> <%= book.body %> </td>
         </tr>
       <% end %>
       </tbody>
     </table>
   </div> <!--～Book一覧-->
+
   </div>
-</div
+</div>

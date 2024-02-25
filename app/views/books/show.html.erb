@@ -5,8 +5,73 @@
   </div>
 <% end %>
 
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div class="container"> <!--ユーザー詳細ページ-->
+  <div class="row mt-3">
 
-<%= @book.title %>
-<%= @book.body %>
+
+    <!--バリデーション(空白が無いかの確認)-->
+
+
+
+    <div class="col-md-3"> <!--ユーザーインフォと新規投稿フォーム-->
+      <div> <!--ユーザー情報-->
+        <h2>User info</h2>
+        <%= image_tag @user.get_profile_image(100,100) %>
+        <table class="table table-bordered=bottom">
+          <tr>
+            <th>name</th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <td><%= @user.intro %></td>
+          </tr>
+        </table>
+        <%= link_to edit_user_path(current_user.id), class: 'btn btn-outline-secondary mt-5 btn-block' do %> <!--ユーザー編集-->
+          <i class="fa-solid fa-user-gear"></i>
+        <% end %>
+      </div> <!--～ユーザー情報-->
+
+      <div> <!--新規投稿フォーム-->
+        <h2 class="mt-3">New Book</h2>
+        <%= form_with model: @book, url: books_path, method: :post do |f| %>
+          <p>Title</p>
+          <%= f.text_field :title %>
+          <p class="pt-3">Opinion</p>
+          <%= f.text_area :body %>
+          <%= f.submit 'Create Book', class: 'btn btn-success mt-3' %>
+        <% end %> <!--～新規投稿フォーム-->
+      </div>
+
+    </div> <!--～ユーザーインフォと新規投稿フォーム-->
+
+    <div class="col-md-8 offset-md-1"> <!--Book一覧-->
+    <h2>Book detail</h2>
+    <table class="table table-bordered-bottom">
+      <tbody>
+        <tr>
+            <td><%= image_tag @book.user.get_profile_image(100,100) %>
+                <%= link_to (user_path(@book.user.id)) do %> <br>
+                  <%= @book.user.name %>
+                <% end %>
+            </td>
+            <td><%=link_to (book_path(@book.id)) do %>
+                <%= @book.title %>
+                <% end %>
+            </td>
+            <td><%= @book.body %> </td>
+            <td><% if @book.user.id == current_user.id %> <!-- ログインしている場合のみ -->
+                <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-success" %>
+                <% end %>
+            </td>
+            <td><% if @book.user.id == current_user.id %> <!-- ログインしている場合のみ -->
+                <%= link_to "Destroy", book_path(@book.id), method: :delete, class: "btn btn-danger", data: { confirm: '本当に消しますか？' } %>
+                <% end %>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div> <!--～Book一覧-->
+
+  </div>
+</div>

@@ -33,7 +33,7 @@
 
     </div> <!--～ユーザーインフォと新規投稿フォーム-->
 
-    <div class="col-md-8 offset-md-1">
+    <div class="col-md-8 offset-md-1"> <!--ユーザー一覧-->
     <h2>Users</h2>
     <table class="table table-bordered-bottom">
       <tr>
@@ -43,13 +43,13 @@
       </tr>
       <% @users.each do |user| %>
         <tr>
-          <td> <% user.get_profile_image(100,100) %> </td>
+          <td> <%= image_tag user.get_profile_image(100,100) %> </td>
           <td> <%= user.name %> </td>
           <td> <%= link_to "show", user_path(user.id) %> </td>
         </tr>
       <% end %>
     </table>
-  </div> <!--～特定ユーザーのBook一覧-->
+  </div> <!--～ユーザー一覧-->
 
   </div>
 </div>
