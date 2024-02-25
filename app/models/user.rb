@@ -1,11 +1,14 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  validates :name, presence: true, length: { minimum: 2 }
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one_attached :profile_image
+
   has_many :books, dependent: :destroy #アソシエーション追加
+   has_one_attached :profile_image
 
 
   has_one_attached :profile_image #ActiveStorageでプロフィール画像保存できるようにする

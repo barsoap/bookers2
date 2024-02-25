@@ -74,7 +74,18 @@
     </header>
 
     <main class="mb-auto"> <!----メイン---->
+
+
+
+        <!--フラッシュメッセージ実装-->
+        <% flash.each do |message_type, message| %>
+          <div class="flash-message">
+            <%= message %>
+          </div>
+        <% end %>
+
       <%= yield %>
+
     </main>
 
     <footer class="py-5">

@@ -27,7 +27,7 @@
 
       <div> <!--新規投稿フォーム-->
         <h2 class="mt-3">New Book</h2>
-        <%= form_with model: @book, url: books_path, method: :post do |f| %>
+        <%= form_with model: @book do |f| %>
           <p>Title</p>
           <%= f.text_field :title %>
           <p class="pt-3">Opinion</p>
@@ -48,7 +48,7 @@
       </tr>
       <% @books.each do |book| %>
         <tr>
-          <td> <% current_user.get_profile_image(100,100) %> </td>
+          <td> <%= image_tag @user.get_profile_image(100,100) %> </td>
           <td> <%= book.title %> </td>
           <td> <%= book.body %> </td>
         </tr>

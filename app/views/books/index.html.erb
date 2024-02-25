@@ -46,13 +46,15 @@
         <th>Title</th>
         <th>Opinion</th>
       </tr>
+      <tbody>
       <% @books.each do |book| %>
-        <tr>
-          <td> <%= book.user.get_profile_image(100,100) %> </td>
+        <tbody>
+          <td> <%= image_tag @user.get_profile_image(100,100) %> </td>
           <td> <%= book.title %> </td>
           <td> <%= book.body %> </td>
         </tr>
       <% end %>
+      </tbody>
     </table>
   </div> <!--～Book一覧-->
   </div>

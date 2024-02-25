@@ -1,2 +1,12 @@
+<!--フラッシュメッセージ実装-->
+<% flash.each do |message_type, message| %>
+  <div class="flash-message">
+    <%= message %>
+  </div>
+<% end %>
+
 <h1>Books#show</h1>
 <p>Find me in app/views/books/show.html.erb</p>
+
+<%= @book.title %>
+<%= @book.body %>
