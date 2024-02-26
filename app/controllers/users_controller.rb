@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to user_path(current_user.id)
+    end
   end
 
   def update
@@ -9,8 +12,8 @@ class UsersController < ApplicationController
       flash[:notice] = "You have updated user successfully."
       redirect_to user_path(@user.id)
     else
-      @user = User.find(params[:id])
-      render :show
+      # @user = User.find(params[:id]) 定義しなおしたらバリデーションエラーが表示されなくなるので不要
+      render :edit
     end
   end
 
@@ -31,7 +34,7 @@ class UsersController < ApplicationController
   # 投稿データのストロングパラメータ
   private
   def user_params
-    params.require(:user).permit(:name, :intro, :profile_image)
+    params.require(:user).permit(:name, :introduction, :profile_image)
   end
 
 end

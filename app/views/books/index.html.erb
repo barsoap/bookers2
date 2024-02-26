@@ -27,18 +27,18 @@
           </tr>
           <tr>
             <th>introduction</th>
-            <td><%= @user.intro %></td>
+            <td><%= @user.introduction %></td>
           </tr>
         </table>
 
-        <%= link_to edit_user_path(current_user.id), class: 'btn btn-outline-secondary mt-5 btn-block' do %> <!--ユーザー編集ボタン-->
+        <%= link_to edit_user_path(current_user), class: 'btn btn-outline-secondary mt-5 btn-block' do %><!--ユーザー編集ボタン-->
           <i class="fa-solid fa-user-gear"></i>
         <% end %>
 
       </div> <!--～ユーザー情報-->
 
       <div> <!--新規投稿フォーム-->
-        <h2 class="mt-3">New Book</h2>
+        <h2 class="mt-3">New book</h2>
         <%= form_with model: @book, url: books_path, method: :post do |f| %>
           <p>Title</p>
           <%= f.text_field :title %>
@@ -52,24 +52,30 @@
 
     <div class="col-md-8 offset-md-1"> <!--Book一覧-->
     <h2>Books</h2>
-    <table class="table table-bordered-bottom">
-      <tr>
-        <th></th>
-        <th>Title</th>
-        <th>Opinion</th>
-      </tr>
-      <tbody>
+    <table class="table table-hover table-bordered-bottom">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+        </tr>
+      </thead>
       <% @books.each do |book| %>
         <tbody>
-          <td> <%= image_tag book.user.get_profile_image(100,100) %> </td>
-          <td><%= link_to (book_path(book.id)) do %>
-                <%= book.title %>
-              <% end %>
-          </td>
-          <td> <%= book.body %> </td>
-        </tr>
+          <tr>
+            <td>
+              <a href="<%= user_path(book.user) %>">
+                <%= image_tag book.user.get_profile_image(100,100) %>
+              </a>
+            </td>
+            <td><%= link_to (book_path(book.id)) do %>
+                  <%= book.title %>
+                <% end %>
+            </td>
+            <td> <%= book.body %> </td>
+          </tr>
+        </tbody>
       <% end %>
-      </tbody>
     </table>
   </div> <!--～Book一覧-->
 

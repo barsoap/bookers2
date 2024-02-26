@@ -3,6 +3,17 @@
 
     <div class="col-lg-6 mx-auto pt-3">
        <h2>User info</h2>
+
+       <!--バリデーション(空白が無いかの確認)-->
+        <% if @user.errors.any?%>
+        <h2><%= @user.errors.count%>error prohibited this obj from being saved: </h2>
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %><br> </li>
+        <% end %>
+        </ul>
+        <% end %>
+
         <%= form_with model: @user, local: true do |f| %>
             <p>Name</p>
             <%= f.text_field :name, class: "form-control mb-3", placeholder: @user.name %>
@@ -11,7 +22,7 @@
             <%= f.file_field :profile_image, class: "mb-3" %>
 
             <p>Introduction</p>
-            <%= f.text_field :intro, class: 'form-control' %>
+            <%= f.text_field :introduction, class: 'form-control' %>
 
             <%= f.submit "Update User", class: "btn btn-secondary mt-3" %>
         <% end %>
